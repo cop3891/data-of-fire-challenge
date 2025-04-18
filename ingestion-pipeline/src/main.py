@@ -19,10 +19,13 @@ def write_to_duckdb(df, duckdb_path, dataset_name, table_name):
 
     duck_con = duckdb.connect(duckdb_path, read_only=False)
     duck_con.execute(f"CREATE SCHEMA IF NOT EXISTS {dataset_name}")
+
+    #create table if not exists or replace
     duck_con.execute(f"""
-        COPY {dataset_name}.{table_name}
-        FROM '{parquet_path}/*.parquet'
+        CREATE OR REPLACE TABLE {dataset_name}.{table_name} AS
+        SELECT * FROM read_parquet('{parquet_path}/*.parquet')
     """)
+
     duck_con.close()
 
     #Works but is too slow because there is no connector from spark to duckdb
@@ -71,7 +74,7 @@ def main():
     # Write to DuckDB
     duckdb_path = '/root/.duckdb/db.duckdb'
     dataset_name = 'raw'
-    table_name = 'fire_incidents_test'
+    table_name = 'fire_incidents'
     write_to_duckdb(df, duckdb_path, dataset_name, table_name)
 
     
