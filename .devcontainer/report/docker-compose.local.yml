@@ -1,0 +1,12 @@
+services:
+  report:
+    build:
+      context: .
+      dockerfile: .devcontainer/report/Dockerfile.local
+    volumes:
+      - ./report:/app
+      - duckdb_data:/root/.duckdb
+    networks:
+      - default
+    environment:
+      - ENV=dev

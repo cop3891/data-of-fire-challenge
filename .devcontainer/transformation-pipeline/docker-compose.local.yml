@@ -1,0 +1,12 @@
+services:
+  transformation-pipeline:
+    build:
+      context: .
+      dockerfile: .devcontainer/transformation-pipeline/Dockerfile.local
+    volumes:
+      - ./transformation-pipeline:/app
+      - duckdb_data:/root/.duckdb
+    networks:
+      - default
+    environment:
+      - ENV=dev

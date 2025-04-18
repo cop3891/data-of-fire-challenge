@@ -1,0 +1,18 @@
+models:
+  - name: fact_fire_incident
+    description: "Fact table of all fire incidents, with FKs into date, time, battalion, and districts"
+    columns:
+      - name: incident_sk
+        tests: [unique, not_null]
+      - name: incident_nk
+        tests: [not_null]
+      - name: date_sk
+        tests: [not_null]
+      - name: alarm_time_sk
+      - name: arrival_time_sk
+      - name: close_time_sk
+      - name: battalion_sk
+      - name: supervisor_district_sk
+      - name: neighborhood_district_sk
+      - name: suppression_units
+      - name: suppression_personnel

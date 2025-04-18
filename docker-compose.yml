@@ -1,0 +1,39 @@
+services:
+  ingestion-pipeline:
+    build:
+      context: .
+      dockerfile: ./ingestion-pipeline/Dockerfile
+    volumes:
+      - duckdb_data:/root/.duckdb
+    networks:
+      - default
+    environment:
+      - ENV=dev
+  transformation-pipeline:
+    build:
+      context: .
+      dockerfile: ./transformation-pipeline/Dockerfile
+    volumes:
+      - duckdb_data:/root/.duckdb
+    networks:
+      - default
+    environment:
+      - ENV=dev
+    depends_on:
+      - ingestion-pipeline
+  report:
+    build:
+      context: .
+      dockerfile: ./report/Dockerfile
+    volumes:
+      - duckdb_data:/root/.duckdb
+    networks:
+      - default
+    environment:
+      - ENV=dev
+    ports:
+      - "8501:8501"
+    depends_on:
+      - ingestion-pipeline
+      - transformation-pipeline
+  

@@ -1,0 +1,23 @@
+{
+    "name": "data-of-fire-challenge-ingestion-pipeline",
+    "dockerComposeFile": [
+        "../../docker-compose.common.yml",
+        "./docker-compose.local.yml"
+    ],
+    "service": "ingestion-pipeline",
+    "workspaceFolder": "/app",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "ms-python.vscode-pylance",
+                "ms-toolsai.jupyter"
+            ],
+            "settings": {
+                "python.defaultInterpreterPath": "/usr/local/bin/python",
+                "terminal.integrated.shell.linux": "/bin/bash"
+            }
+        }
+    },
+    "forwardPorts": [4040]
+}

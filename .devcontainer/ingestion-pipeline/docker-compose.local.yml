@@ -1,0 +1,12 @@
+services:
+  ingestion-pipeline:
+    build:
+      context: .
+      dockerfile: .devcontainer/ingestion-pipeline/Dockerfile.local
+    volumes:
+      - ./ingestion-pipeline:/app
+      - duckdb_data:/root/.duckdb
+    networks:
+      - default
+    environment:
+      - ENV=dev

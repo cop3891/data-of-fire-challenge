@@ -1,0 +1,39 @@
+models:
+  - name: dim_date
+    description: "Incremental calendar table from fire_incidents.incident_date"
+    columns:
+      - name: date_value
+        tests:
+          - not_null
+      - name: date_sk
+        tests:
+          - not_null
+          - unique
+      - name: year
+      - name: quarter
+      - name: month
+      - name: day
+      - name: day_of_week
+      - name: week_of_year
+  - name: dim_time_period
+    description: "Time‑of‑day dimension from fire_incidents alarm/arrival/close times"
+    columns:
+      - name: time_value
+        tests: [not_null]
+      - name: time_sk
+        tests: [unique, not_null]
+
+  - name: dim_district
+    description: "All supervisor & neighborhood districts"
+    columns:
+      - name: district_sk
+        tests: [unique, not_null]
+      - name: district_type
+      - name: district_name
+
+  - name: dim_battalion
+    description: "Distinct fire battalion identifiers"
+    columns:
+      - name: battalion_sk
+        tests: [unique, not_null]
+      - name: battalion

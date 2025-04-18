@@ -1,0 +1,9 @@
+models:
+  - name: battalion_incident_counts
+    description: "Number of fire incidents per battalion"
+    columns:
+      - name: battalion_sk
+        tests: [not_null, unique]
+      - name: battalion_name
+      - name: incident_count
+        tests: [not_null]

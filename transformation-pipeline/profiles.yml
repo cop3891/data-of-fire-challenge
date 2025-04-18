@@ -1,0 +1,13 @@
+transformation_pipeline:
+  outputs:
+    dev:
+      type: duckdb
+      path: /root/.duckdb/db.duckdb
+      threads: 1
+
+    prod:
+      type: duckdb
+      path: /root/.duckdb/db.duckdb
+      threads: 4
+
+  target: dev

@@ -1,0 +1,3 @@
+/logs
+**/*.ipynb
+.user.yml

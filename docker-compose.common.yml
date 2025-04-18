@@ -1,0 +1,5 @@
+networks:
+  default:
+    driver: bridge
+volumes:
+  duckdb_data:
